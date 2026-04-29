@@ -3,25 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Copiar PIX</title>
+    <title>PIX da Anne Karoline</title>
     <style>
-        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #f4f4f9; }
-        .card { background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center; }
-        button { background-color: #32BCAD; color: white; border: none; padding: 15px 30px; font-size: 1.2rem; border-radius: 8px; cursor: pointer; }
+        body { 
+            font-family: 'Poppins', sans-serif, sans-serif; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0; 
+            /* Fundo com degradê suave e o brilho dourado sutil do convite */
+            background: radial-gradient(circle, #ffffff 60%, #fff0f5 100%), 
+                        url('https://www.transparenttextures.com/patterns/glitter.png');
+            background-blend-mode: soft-light;
+        }
+        .card { 
+            background: white; 
+            padding: 2rem; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 20px rgba(220, 20, 114, 0.15); /* Sombra no tom de rosa */
+            text-align: center; 
+            border: 2px solid #DC1472; /* Borda no rosa vibrante principal */
+        }
+        h2 {
+            color: #DC1472; /* Rosa vibrante igual ao "Anne Karoline" */
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        p {
+            color: #5d2838; /* Rosa escuro para o texto, mais suave que preto */
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        button { 
+            /* O botão usa o rosa vibrante principal */
+            background-color: #DC1472; 
+            color: white; 
+            border: none; 
+            padding: 18px 35px; 
+            font-size: 1.2rem; 
+            border-radius: 50px; /* Bordas bem arredondadas, igual ao círculo do "15" */
+            cursor: pointer; 
+            transition: 0.3s; 
+            font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+        button:hover { 
+            /* Efeito ao passar o mouse: um tom um pouco mais escuro */
+            background-color: #C01060; 
+            box-shadow: 0 6px 8px rgba(0,0,0,0.3);
+        }
+        #msg {
+            margin-top: 15px; 
+            color: #DC1472; /* Rosa vibrante para a mensagem de sucesso */
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="card">
-        <h2>Pagamento PIX</h2>
-        <p>Clica abaixo para copiar a chave:</p>
-        <button onclick="copiar()">Copiar Chave PIX</button>
-        <p id="msg" style="color: green; margin-top: 10px;"></p>
-    </div>
-    <script>
-        function copiar() {
-            navigator.clipboard.writeText("88992212752");
-            document.getElementById("msg").innerText = "✅ Copiado!";
-        }
-    </script>
+
+<div class="card">
+    <h2>Presente para a Anne</h2>
+    <p>Para sua facilidade, clique no botão para<br>copiar a chave PIX:</p>
+    <button id="btn" onclick="copiar()">Copiar Chave PIX</button>
+    <p id="msg"></p>
+</div>
+
+<script>
+    function copiar() {
+        const chave = "88992212752";
+        navigator.clipboard.writeText(chave).then(() => {
+            const btn = document.getElementById("btn");
+            const msg = document.getElementById("msg");
+            
+            msg.innerText = "✅ Chave copiada com sucesso!";
+            btn.innerText = "Copiado!";
+            
+            // Volta ao normal depois de 3 segundos
+            setTimeout(() => {
+                msg.innerText = "";
+                btn.innerText = "Copiar Chave PIX";
+            }, 3000);
+        }).catch(err => {
+            // Caso o navegador bloqueie a cópia automática
+            const msg = document.getElementById("msg");
+            msg.innerText = "Erro ao copiar. A chave é: " + chave;
+            msg.style.color = "red";
+        });
+    }
+</script>
+
 </body>
 </html>
